@@ -1,0 +1,34 @@
+module Main
+  def tick(args)
+    args.state.dragon_x ||= 540
+    args.state.dragon_y ||= 260
+
+    speed = 5
+    args.state.dragon_x -= speed if args.inputs.keyboard.left
+    args.state.dragon_x += speed if args.inputs.keyboard.right
+    args.state.dragon_y -= speed if args.inputs.keyboard.down
+    args.state.dragon_y += speed if args.inputs.keyboard.up
+
+    # TRY THIS: make the dragon stop at the screen edges.
+    # Replace the four border lines below with your own if you want.
+    args.state.dragon_x = 1280 if args.state.dragon_x < -200
+    args.state.dragon_x = -200 if args.state.dragon_x > 1280
+    args.state.dragon_y = 720 if args.state.dragon_y < -200
+    args.state.dragon_y = -200 if args.state.dragon_y > 720
+
+    args.outputs.sprites << {
+      x: args.state.dragon_x,
+      y: args.state.dragon_y,
+      w: 200,
+      h: 200,
+      path: "dragonruby.png"
+    }
+
+    args.outputs.labels << {
+      x: 20,
+      y: 700,
+      text: "Arrow keys move the dragon | ticks: #{Kernel.tick_count}",
+      size_px: 22
+    }
+  end
+end
