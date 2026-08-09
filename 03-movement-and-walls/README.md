@@ -1,64 +1,101 @@
-# 03 - Movement and walls
+# 03 - Time and boundaries
 
-## Mission
+## Week 3 outcome
 
-Make the dragon stop at the edges of the screen so it never disappears.
+Keep the dragon moving consistently and stop it at the edges of the screen.
 
 ## New idea
 
-A game can make decisions with `if`. Today we use it to say: “If the dragon goes too far, bring it back.”
+DragonRuby runs `tick` again and again. Each run is one **frame**. The game can count frames to measure time:
 
-## Start with the working game
-
-1. This lesson continues [Lesson 02](02-how-dragonruby-works/README.md).
-2. Start DragonRuby by double-clicking the ordinary executable.
-3. Open the existing `mygame/app/main.rb` in Sublime Text.
-
-If the game ever gets messy, copy the file from `03-movement-and-walls/starter/app/main.rb` into `mygame/app/main.rb` and start again.
-
-## Exercise 3.1 - Make the dragon stop at the edge
-
-Find the four lines near the bottom that start with `args.state.dragon_x =` or `args.state.dragon_y =`.
-
-Those lines already keep the dragon on screen. Try changing the numbers a little and watch what happens.
-
-For example:
-- Change `1280` to something smaller and see where the dragon stops.
-- Change `-200` to something else and see how far off screen the dragon can go before it snaps back.
-
-Save after each change and play.
-
-## Exercise 3.2 - Add your own wall rule
-
-Below the dragon movement, add one new rule of your own.
-
-Here is one example you can type exactly:
-
-```ruby
-args.state.dragon_x = 640 if args.state.dragon_x > 1300
+```text
+one tick = one frame
+60 frames ≈ one second
 ```
 
-Read it out loud with a parent:
+The game can also compare a position with a boundary:
 
-> “If the dragon goes past 1300, put it back at 640.”
+```ruby
+if next_x < 0
+  next_x = 0
+end
+```
 
-Then try to write one more rule yourself. It does not need to be fancy. It only needs to use `if` and a number.
+Today’s ideas are frames, timers, Booleans, comparisons, and screen boundaries.
+
+## Load the lesson
+
+Make sure Week 2 is saved, then run:
+
+```text
+spwn sync 03-movement-and-walls/starter --into mygame
+```
+
+Launch your local DragonRuby and open `mygame/app/main.rb` in Sublime Text.
+
+If the game gets messy, copy `03-movement-and-walls/starter/app/main.rb` into `mygame/app/main.rb` and start again.
+
+## Exercise 3.1 - Watch frames
+
+Watch the `frames` number while the game is open. It increases because `tick` keeps running.
+
+The number is a simple timer. Change the label to show `args.state.frame_count / 60.0` and watch roughly one second pass every 60 frames.
+
+## Exercise 3.2 - Add the boundary rules
+
+The dragon can currently leave the screen. Find the `TRY THIS` comment and add these rules after the movement code:
+
+```ruby
+if next_x < 0
+  next_x = 0
+end
+if next_x > 1080
+  next_x = 1080
+end
+if next_y < 0
+  next_y = 0
+end
+if next_y > 520
+  next_y = 520
+end
+```
+
+Read one rule out loud:
+
+> “If the next x position is less than zero, set it back to zero.”
+
+The maximums are `1280 - 200` and `720 - 200` because the dragon is 200 units wide and tall.
+
+## Exercise 3.3 - Make a small timer change
+
+Change the speed from `5` to another number. The frame counter still increases one frame at a time, while the dragon moves a different distance each frame.
 
 ## Checkpoint
 
 You are done when you can say:
-- “The dragon moves because of the arrow keys.”
-- “The `if` lines stop the dragon at the edges.”
-- “Changing a number changes where the wall happens.”
 
-Next: [04 - Collectibles](04-collectibles/README.md) when it is ready.
+- “DragonRuby calls `tick` once per frame.”
+- “A timer can count frames.”
+- “A comparison gives the game a true-or-false answer.”
+- “Boundary rules keep the dragon on screen.”
+
+Save the working result:
+
+```text
+spwn look
+spwn compare
+spwn save -m "week 03: keep the player on screen"
+spwn upload
+```
+
+Next: [04 - Collectibles](../04-collectibles/README.md).
 
 ---
 
 ## Adult notes
 
-- This lesson is the first real use of `if` for game rules.
-- The target file is the same as the starter, because the border code is already complete. The lesson is about understanding it and changing the numbers, not typing the whole thing from scratch.
-- Keep the student edit small. The goal is reading and tweaking, not writing a large block.
-- If the student wants a bigger challenge, let them invent a second rule, but do not turn this into a puzzle. The lesson is the idea, not the exact code.
-- Commit on the `son-learning` branch with a message like `lesson 03: stop the dragon at the edges`.
+- This is Week 3 of the integrated curriculum: time and boundaries.
+- The starter is playable but intentionally allows the dragon to leave the screen.
+- The intended student implementation is four small `if` rules.
+- The target shows the completed boundary rules. Do not ask the student to type the whole file.
+- Commit with a message such as `week 03: keep the player on screen`.

@@ -5,11 +5,7 @@ module Main
     args.state.dragon_y ||= 260
 
     # TRY THIS 2: change speed and see what happens.
-    speed = 5
-    args.state.dragon_x -= speed if args.inputs.keyboard.left
-    args.state.dragon_x += speed if args.inputs.keyboard.right
-    args.state.dragon_y -= speed if args.inputs.keyboard.down
-    args.state.dragon_y += speed if args.inputs.keyboard.up
+    move_player(args, 5)
 
     # TRY THIS 3: change the dragon's size.
     args.outputs.sprites << {
@@ -26,5 +22,12 @@ module Main
       text: "Arrow keys move the dragon | ticks: #{Kernel.tick_count}",
       size_px: 22
     }
+  end
+
+  def move_player(args, speed)
+    args.state.dragon_x -= speed if args.inputs.keyboard.left
+    args.state.dragon_x += speed if args.inputs.keyboard.right
+    args.state.dragon_y -= speed if args.inputs.keyboard.down
+    args.state.dragon_y += speed if args.inputs.keyboard.up
   end
 end

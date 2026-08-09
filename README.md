@@ -1,95 +1,387 @@
 # Make Games with DragonRuby
 
-A small, game-first programming course for a 12-year-old beginner who knows Scratch. Every lesson is a playable DragonRuby project with a few lines to change.
+A game-first programming course for Nathan who is new to Ruby.
 
-This is not a Ruby course first. It is a “make the game do something cool” course. New words are introduced only when the game needs them.
+Learns programming by making games and Ruby concepts are introduced only when a game mechanic needs them.
 
-## The template rule
+## Course rules
 
-Every lesson starts with a working game. The student never starts with a blank project and never has to type a whole game from a book. Most lessons continue the same game; only the first lesson needs a fresh starter.
+- No coding agent, Copilot, AI autocomplete, or AI-generated code.
+- DragonRuby is the game engine.
+- Sublime Text is the student's editor.
+- Pyxel Edit is used for sprites, tiles, and animation.
+- SPWN provides child-friendly save-points and sharing.
+- GitHub Actions tests game rules and data.
+- Lesson templates provide the starting point; the student owns the work.
+- Every lesson starts with a playable project.
+- Every lesson ends with a visible improvement and a `spwn save`.
 
-Each lesson provides:
+The student should not need to install Ruby, rbenv, Bundler, or a database server. DragonRuby provides the runtime used to run the games.
 
-- `README.md` - one tiny mission and the instructions.
-- `starter/` - the initial complete game, used for Lesson 01 and recovery.
-- `target/` - the finished state to compare with after trying.
+## Weekly rhythm
 
-The student changes one or two lines, saves, plays, and sees the lesson work. Everything else is scaffolding supplied by the course or prepared by the parent. The child keeps editing the same active `mygame` and always double-clicks the ordinary DragonRuby executable.
+Each week contains two or three short sessions:
 
-## Start here
+1. Play the current game.
+2. Change one small part of the template.
+3. Run the game and observe the result.
+4. Add or edit a sprite when appropriate.
+5. Explain the Ruby concept after it works.
+6. Commit the working version.
+7. Finish with a small creative challenge.
 
-This course assumes **Windows 11 Education** and these tools:
+A lesson should normally take 20–40 minutes. Stop before frustration begins.
 
-- [GitHub Desktop](https://desktop.github.com/) - saving and sharing the project.
-- [Sublime Text](https://www.sublimetext.com/) - editing the code.
-- [DragonRuby Game Toolkit](https://dragonruby.itch.io/dragonruby-gtk) - running the game.
-- Ruby - small experiments when a lesson calls for them. DragonRuby runs its own game code.
-- Pyxel Editor - making tiny pixel-art images later.
+## SPWN lesson workflow
 
-Adults: see [INSTRUCTION.md](INSTRUCTION.md) for setup and lesson-switching instructions.
+SPWN lives in `/Users/marcus.kim/repositories/individual/spawnpoint`. Install or expose its `bin/spwn` command once. After that, the student follows the same loop every week:
 
-1. **Parent:** install the tools and fork this repository in GitHub Desktop.
-2. **Student:** open `dragonruby-windows-amd64\\mygame\\app\\main.rb` in Sublime Text.
-3. **Student:** change one small thing, save, and play.
+```text
++-----------------------+
+| Student prepares repo |
+| and installs SPWN     |
++-----------+-----------+
+            |
+            v
++-----------------------+
+| spwn sync             |
+| lesson/starter        |
+| --into mygame         |
++-----------+-----------+
+            |
+            v
++-----------------------+
+| Student opens DragonRuby|
+| and plays the game    |
++-----------+-----------+
+            |
+            v
++-----------------------+
+| Student edits one small |
+| marked change         |
++-----------+-----------+
+            |
+            v
++-----------------------+
+| spwn look             |
+| spwn compare          |
++-----------+-----------+
+            |
+            v
+     +------------------+
+     | Does it work yet?|
+     +----+--------+----+
+          |        |
+       no |        | yes
+          |        v
+          |  +-----------------------+
+          |  | Student reviews result|
+          |  | spwn save -m "..."    |
+          |  +-----------+-----------+
+          |              |
+          |              v
+          |  +-----------------------+
+          |  | spwn upload           |
+          |  | share the checkpoint  |
+          |  +-----------+-----------+
+          |              |
+          |              v
+          |  +-----------------------+
+          |  | Next week: spwn sync  |
+          |  | the next starter      |
+          |  +-----------------------+
+          |              |
+          +--------------+
+                         |
+                         v
+                 play and edit again
+```
 
-The course uses one short loop: change a few lines, save, play the game, celebrate, then save a GitHub snapshot. The parent handles confusing Git steps at first.
+The `no` path loops back to play and edit. The student can run that loop as many times as needed before saving and uploading.
 
-## Lessons
+Useful commands:
 
-| Lesson | Game result | Programming idea |
-| --- | --- | --- |
-| [00 - Prerequisites](00-prerequisites.md) | A ready-to-use GitHub repo | Files, folders, commits |
-| [01 - Setup](01-setup/README.md) | A greeting and a dragon | Editor, engine, live reload |
-| [02 - How DragonRuby works](02-how-dragonruby-works/README.md) | A moving, wrapping dragon | `tick`, input, state, coordinates |
-| 03 - Movement and walls | The dragon stays on screen | Variables and conditionals |
-| 04 - Collectibles | A score goes up | Lists, overlap, incrementing |
-| 05 - Patrol NPC | An enemy follows a route | Loops and simple state |
-| 06 - Health and damage | Win and lose | State machines |
-| 07 - Art and game feel | A game that looks like yours | Pixel art and feedback |
-| 08 - Ship it | A finished game others can play | Packaging and release |
+```text
+spwn look                              # see the current project state
+spwn compare                           # see the code changes
+spwn sync 03-movement-and-walls/starter --into mygame
+spwn save -m "week 03: keep the player on screen"
+spwn upload                            # share the checkpoint
+```
 
-Sound comes after the core game works. Pyxel Editor is an optional art tool, not a second programming course. Meshy can be an optional later experiment for making art ideas, but it is not needed to learn programming.
+## Big Table of Contents
 
-The course game and future games use different workflows: lessons extend one cumulative game; a new game starts from a separate clean template. Adults should read [INSTRUCTION.md](INSTRUCTION.md) before creating additional games or importing asset packs.
+### Unit 1 — From Scratch to Ruby games
 
-To make a new game later, copy one clean template folder and give it its own `app/main.rb`, `sprites/`, `sounds/`, `fonts/`, `data/`, and `metadata/`. The student learns to make a new game by copying a ready folder, not by building one from scratch. See [adult notes for future games](00-adult-notes-for-future-games.md) for the template rule and asset folder ideas.
+DragonRuby's game loop; frames and time; values and variables; coordinates; input; conditions; methods; and Git save-points.
 
-Adults can use the [game mechanics map](resources/game-mechanics.md) to plan the next visible programming idea. State machines and hierarchical states are later organising tools, not starting topics.
+### Unit 2 — Classic arcade mechanics
 
-## What is ready now
+Movement; velocity; direction; collision; arrays; loops; score; lives; and game states.
 
-- Lesson 00: prerequisites
-- Lesson 01: first game setup
-- Lesson 02: movement and the heartbeat
-- Lesson 03: walls and `if`
-- Lesson 04: collectibles and score
+Projects: Pong, Breakout, and Space Invaders.
 
-The working course game lives in `mygame/app/main.rb`. Lessons 05 onward still need to be written.
+### Unit 3 — Objects, sprites, and animation
 
-## What comes next
+Classes; instance variables; `initialize`; object methods; object collaboration; sprite sheets; animation frames; and animation states.
 
-After Lesson 04, the next visible ideas are:
-- a patrol enemy
-- something that hurts the player
-- winning and losing
+Projects: reusable player, enemy, bullet, and collectible objects.
 
-One lesson at a time. Keep each one small enough for one short session.
+### Unit 4 — Grid worlds and simple AI
 
-## Git habit
+Two-dimensional arrays; tile maps; grid coordinates; enemy patrols; chasing; distance and direction; and state machines.
 
-Git is the game's rewind button. The parent can do the first commits while the student learns. Later, the student can use GitHub Desktop's **Commit** and **Push origin** buttons after every working change.
+Projects: maze game, Pac-Man-style game, and simple enemy AI.
 
-Keep the commit message about what the player can now see or do.
+### Unit 5 — Platformers and game feel
 
-## Teaching rhythm
+Gravity; jumping; platform collision; camera scrolling; timers and cooldowns; hit reactions; UI and feedback; and debugging.
 
-- One session: 20-40 minutes.
-- One visible change per exercise.
-- Read code together; do not require memorisation.
-- Stop while the game is still fun.
-- Let the student choose names, colours, characters, and the next tiny feature.
-- If an exercise takes more than a few minutes to understand, the parent reveals the target or supplies the missing line. The lesson is the goal, not solving a puzzle unaided.
+Project: a short platformer.
 
-## Source material
+### Unit 6 — Local chess
 
-The lessons are adapted from the beginner path in *Building Games with DragonRuby* v1.2 and the DragonRuby samples/docs. The book is a reference, not homework: use it when a lesson points you there or when curiosity wins.
+Board representation; pieces as objects; legal movement; captures; turns; check; checkmate; special moves; move history; save/load; and automated tests.
+
+Project: local two-player chess with no computer opponent.
+
+### Later Unit 7 — ¾-view hack-and-slash
+
+Tile depth ordering; combat; weapons; inventory; enemy classes; animation states; procedural rooms; procedural dungeons; seeded generation; and boss rooms.
+
+### Later Unit 8 — Server multiplayer
+
+Client and server; messages; game rooms; server-authoritative rules; move validation; disconnects; and saving games.
+
+Project: online chess multiplayer.
+
+### Later Unit 9 — Pseudo-3D FPS
+
+Vectors; angles; rays; distance; perspective; raycasting; first-person movement; enemy billboard sprites; and weapon animation.
+
+Project: a small Wolfenstein-style FPS.
+
+## Integrated 24-Week Plan
+
+### Unit 1 — From Scratch to Ruby games
+
+#### Week 1 — First project
+
+Game result: a dragon player appears on screen.
+
+Concepts: files and folders, Ruby values, variables, drawing, DragonRuby project structure, and the first Git commit.
+
+Pyxel Edit: create the first player sprite.
+
+#### Week 2 — Movement
+
+Game result: the player moves with the keyboard.
+
+Concepts: input, coordinates, speed, `if`, and methods.
+
+#### Week 3 — Time and boundaries
+
+Game result: movement remains consistent and the player cannot leave the screen.
+
+Concepts: frames, timers, Booleans, comparisons, and screen boundaries.
+
+#### Week 4 — Collectibles
+
+Game result: the player collects stars and gains points.
+
+Concepts: arrays, loops, collision, score, and removing objects.
+
+Pyxel Edit: collectible and enemy sprites.
+
+### Unit 2 — Classic arcade mechanics
+
+#### Week 5 — Pong movement
+
+Game result: a ball moves and bounces.
+
+Concepts: velocity, direction, position, and collision.
+
+#### Week 6 — Complete Pong
+
+Game result: two players can play Pong.
+
+Concepts: paddles, lives, score, resetting a round, and game-over state.
+
+#### Week 7 — Breakout
+
+Game result: bricks appear and disappear when hit.
+
+Concepts: collections of objects, repetition, removing objects, and multiple collision targets.
+
+#### Week 8 — Space Invaders
+
+Game result: enemies move in formation and can be destroyed.
+
+Concepts: bullets, enemy collections, spawning, difficulty, and win/lose states.
+
+### Unit 3 — Objects, sprites, and animation
+
+#### Week 9 — Classes
+
+Game result: the game uses `Player`, `Enemy`, `Bullet`, and `Item` objects.
+
+Concepts: classes, `initialize`, instance variables, and object methods.
+
+#### Week 10 — Objects collaborating
+
+Game result: bullets damage enemies and enemies affect the player.
+
+Concepts: passing objects to methods, health, damage, and object interaction.
+
+#### Week 11 — Sprite sheets
+
+Game result: the player has idle and walking animation.
+
+Concepts: frames, sprite sheets, animation timers, and direction.
+
+Pyxel Edit: create idle and walking frames.
+
+#### Week 12 — Animation states
+
+Game result: the player can idle, walk, attack, get hurt, and die.
+
+Concepts: state machines, animation selection, cooldowns, and timed actions.
+
+### Unit 4 — Grid worlds and simple AI
+
+#### Week 13 — Maze data
+
+Game result: a maze is generated from a two-dimensional array.
+
+Concepts: rows, columns, grid coordinates, and tile data.
+
+#### Week 14 — Maze movement
+
+Game result: the player moves through the maze but not through walls.
+
+Concepts: grid collision, neighbouring cells, and separating level data from game logic.
+
+#### Week 15 — Enemy patrol
+
+Game result: an enemy follows a route.
+
+Concepts: waypoints, loops, direction changes, and patrol state.
+
+#### Week 16 — Enemy chase
+
+Game result: an enemy follows the player.
+
+Concepts: distance, direction, simple AI, and `idle`, `patrol`, and `chase`.
+
+Pyxel Edit: directional enemy animation.
+
+### Unit 5 — Platformers and game feel
+
+#### Week 17 — Gravity and jumping
+
+Game result: the player jumps and falls.
+
+Concepts: gravity, acceleration, velocity, and ground detection.
+
+#### Week 18 — Platform collision
+
+Game result: the player lands on platforms and avoids hazards.
+
+Concepts: horizontal and vertical collision, collision response, and reusable methods.
+
+#### Week 19 — Camera and feedback
+
+Game result: the camera scrolls and the game responds to hits.
+
+Concepts: world and screen coordinates, camera offset, timers, hit flash, invincibility frames, and health UI.
+
+#### Week 20 — Platformer vertical slice
+
+Game result: one finished platformer level.
+
+Concepts: checkpoints, game restart, debugging, refactoring repeated code, and playtesting.
+
+### Unit 6 — Local chess
+
+#### Week 21 — Chessboard and pieces
+
+Game result: an 8×8 board displays chess pieces.
+
+Concepts: two-dimensional arrays, coordinates, classes, piece data, and mouse selection.
+
+Pyxel Edit: simple chess piece sprites.
+
+#### Week 22 — Legal movement
+
+Game result: pawns, rooks, bishops, knights, and queens move legally.
+
+Concepts: methods, conditions, rules, blocked paths, and turn management.
+
+```ruby
+class Knight
+  def legal_move?(from, to, board)
+    # A knight moves in an L shape.
+  end
+end
+```
+
+#### Week 23 — Kings and special rules
+
+Game result: captures, check, checkmate, castling, promotion, and en passant work.
+
+Concepts: rule validation, edge cases, state checking, and test positions.
+
+#### Week 24 — Finished local chess
+
+Game result: two people can play a complete local chess game.
+
+Concepts: move history, undo, save/load, testable game rules, GitHub Actions, README, and release.
+
+The first chess version has no computer opponent and no online server.
+
+## Testing approach
+
+GitHub Actions should test rules and data, not visual appearance.
+
+Examples:
+
+- A rook cannot move diagonally.
+- A bishop cannot jump over a piece.
+- A knight can jump.
+- A player cannot move into check.
+- Checkmate is detected.
+- A generated level has a reachable exit.
+- A save file restores the correct position.
+- Every item has a valid ID.
+
+## After Week 24
+
+The next project is independent development:
+
+1. Rebuild a small game from a blank template.
+2. Design an original game.
+3. Make a four-to-eight-week vertical slice.
+4. Add original Pyxel Edit art and animation.
+5. Playtest it.
+6. Publish it privately or on itch.io.
+7. Join a small game jam.
+
+After that, choose one direction: continue DragonRuby game programming, build the ¾-view procedural hack-and-slash game, add a Ruby chess server, move to a real 3D engine, or deepen pixel art, animation, sound, or level design.
+
+## Repository and setup
+
+See [INSTRUCTION.md](INSTRUCTION.md) for local setup, lesson switching, and sharing between Windows and Mac. Use SPWN for the course's save-point, lesson-sync, and sharing commands.
+
+The active game is `mygame/app/main.rb`. The student works through the lessons in order:
+
+- [00 - Prerequisites](00-prerequisites.md)
+- [01 - First project](01-setup/README.md)
+- [02 - Movement](02-how-dragonruby-works/README.md)
+- [03 - Time and boundaries](03-movement-and-walls/README.md)
+- [04 - Collectibles](04-collectibles/README.md)
+- [05 - Pong movement](05-pong-movement/README.md)
+- [06 - Complete Pong](06-pong-game/README.md)
+- [07 - Breakout](07-breakout/README.md)
+- [08 - Space Invaders](08-space-invaders/README.md)
+
+Lessons 09 onward will be added as each project is designed. Do not create empty lesson folders just to represent the roadmap.

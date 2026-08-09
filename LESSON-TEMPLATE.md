@@ -30,11 +30,12 @@ Change only the lines marked `TRY THIS`. Save after each change and play.
 Describe what changed on screen.
 ```
 
-## `starter/app/main.rb` (first lesson or recovery only)
+## `starter/app/main.rb`
 
-- Must run before the student changes anything.
+- Must run before the student changes anything, even if the lesson's feature is intentionally incomplete.
 - Must contain the complete game loop, drawing, assets, and state setup.
-- Mark only the intended edits with `TRY THIS` comments.
+- Leave only the intended lesson change unfinished; do not make the student reconstruct unrelated code.
+- Mark the intended edit with a `TRY THIS` comment.
 - Leave no unexplained blank method, missing asset, or broken placeholder.
 - Keep the intended student edit to roughly 1-8 lines.
 
