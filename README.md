@@ -2,7 +2,7 @@
 
 A game-first programming course for Nathan who is new to Ruby.
 
-Learns programming by making games and Ruby concepts are introduced only when a game mechanic needs them.
+Learns programming by making games and Ruby concepts are introduced only when a game mechanic needs them. The student learns to describe game state and rules, predict what should happen, implement the smallest change, and compare the result with the prediction.
 
 ## Course rules
 
@@ -13,24 +13,70 @@ Learns programming by making games and Ruby concepts are introduced only when a 
 - SPWN provides child-friendly save-points and sharing.
 - GitHub Actions tests game rules and data.
 - Lesson templates provide the starting point; the student owns the work.
+- Predict before running: for each new rule, the student should describe at least one concrete example and predict the result before testing it in the game.
+- Templates provide structure rather than solutions. Early templates provide more structure; later templates become smaller and require more of the design to come from the student.
 - Every lesson starts with a playable project.
 - Every lesson ends with a visible improvement and a `spwn save`.
 
 The student should not need to install Ruby, rbenv, Bundler, or a database server. DragonRuby provides the runtime used to run the games.
+
+## How we solve programming problems
+
+Programming in this course is not trial and error. Before changing the game, understand what the game knows, what rule should operate on it, and what result you expect.
+
+For trivial work, use:
+
+```text
+RULE → EXAMPLE → CODE → CHECK
+```
+
+For non-trivial mechanics, use:
+
+```text
+STATE
+  ↓
+RULE
+  ↓
+EXAMPLES
+  ↓
+CODE TEMPLATE
+  ↓
+IMPLEMENT
+  ↓
+TEST
+```
+
+This produces the recurring development loop used throughout the course:
+
+```text
+DESCRIBE → PREDICT → IMPLEMENT → PLAY → OBSERVE → REFINE
+    ↑                                                │
+    └────────────────────────────────────────────────┘
+```
+
+**Describe** the desired behaviour in plain language. **Predict** what should happen for concrete values or situations. **Implement** the smallest change that expresses the rule. **Play** the game. **Observe** what actually happened. **Refine** the rule, example, or implementation when observation differs from prediction.
+
+A working game is not enough. The student should gradually become able to explain what state mattered, what the rule was, what was predicted, and what actually happened.
 
 ## Weekly rhythm
 
 Each week contains two or three short sessions:
 
 1. Play the current game.
-2. Change one small part of the template.
-3. Run the game and observe the result.
-4. Add or edit a sprite when appropriate.
-5. Explain the Ruby concept after it works.
-6. Commit the working version.
-7. Finish with a small creative challenge.
+2. Describe the next game rule in plain language.
+3. Work through a concrete example and predict what should happen.
+4. Change one small part of the template.
+5. Run the game and observe the result.
+6. Compare the observation with the prediction.
+7. Refine the rule, example, or code if necessary.
+8. Add or edit a sprite when appropriate.
+9. Explain the Ruby concept after the mechanic works.
+10. Save the working version with `spwn save`.
+11. Finish with a small creative challenge.
 
 A lesson should normally take 20–40 minutes. Stop before frustration begins.
+
+Creative challenges are less-scaffolded transfer exercises. They ask Nathan to apply the current idea in a new situation without being shown the code. The challenge becomes less prescribed as the course progresses: first change a known rule, then invent a mechanic, then design the state, examples, and implementation independently.
 
 ## SPWN lesson workflow
 
@@ -57,23 +103,31 @@ SPWN lives in `/Users/marcus.kim/repositories/individual/spawnpoint`. Install or
             |
             v
 +-----------------------+
-| Student edits one small |
-| marked change         |
+| Student describes the |
+| rule and predicts the  |
+| result                 |
 +-----------+-----------+
             |
             v
 +-----------------------+
-| spwn look             |
-| spwn compare          |
+| Student edits one     |
+| small marked change   |
 +-----------+-----------+
             |
             v
-     +------------------+
-     | Does it work yet?|
-     +----+--------+----+
-          |        |
-       no |        | yes
-          |        v
++-----------------------+
+| Play and observe      |
+| spwn look / compare   |
++-----------+-----------+
+            |
+            v
+     +------------------------+
+     | Did observation match  |
+     | the prediction?        |
+     +----+--------------+----+
+          |              |
+       no |              | yes
+          |              v
           |  +-----------------------+
           |  | Student reviews result|
           |  | spwn save -m "..."    |
@@ -89,7 +143,7 @@ SPWN lives in `/Users/marcus.kim/repositories/individual/spawnpoint`. Install or
           |  +-----------------------+
           |  | Next week: spwn sync  |
           |  | the next starter      |
-          |  +-----------------------+
+          |  +-----------+-----------+
           |              |
           +--------------+
                          |
@@ -97,7 +151,7 @@ SPWN lives in `/Users/marcus.kim/repositories/individual/spawnpoint`. Install or
                  play and edit again
 ```
 
-The `no` path loops back to play and edit. The student can run that loop as many times as needed before saving and uploading.
+The `no` path asks which part needs refinement: was the rule wrong, was the example or prediction wrong, or was the code wrong? The student can run that loop as many times as needed before saving and uploading.
 
 Useful commands:
 
@@ -135,13 +189,13 @@ Projects: maze game, Pac-Man-style game, and simple enemy AI.
 
 ### Unit 5 — Platformers and game feel
 
-Gravity; jumping; platform collision; camera scrolling; timers and cooldowns; hit reactions; UI and feedback; and debugging.
+Gravity; jumping; platform collision; game feel; camera scrolling; timers and cooldowns; hit reactions; UI and feedback; and debugging.
 
 Project: a short platformer.
 
 ### Unit 6 — Local chess
 
-Board representation; pieces as objects; legal movement; captures; turns; check; checkmate; special moves; move history; save/load; and automated tests.
+Board representation; pieces as objects; legal movement; captures; turns; king safety; check; checkmate; special moves; move history; save/load; and automated tests.
 
 Project: local two-player chess with no computer opponent.
 
@@ -289,11 +343,21 @@ Game result: the player lands on platforms and avoids hazards.
 
 Concepts: horizontal and vertical collision, collision response, and reusable methods.
 
-#### Week 19 — Camera and feedback
+#### Week 19 — Game feel
 
-Game result: the camera scrolls and the game responds to hits.
+Game result: the platformer feels responsive because the camera follows the player and hits produce visible feedback.
 
-Concepts: world and screen coordinates, camera offset, timers, hit flash, invincibility frames, and health UI.
+Concepts: world and screen coordinates, camera offset, timers, hit flash, screen shake, invincibility frames, and health UI.
+
+Lesson shape:
+
+1. Add a camera offset so the player can move through a larger world.
+2. Add a short hit flash when the player takes damage.
+3. Add invincibility frames so one collision cannot remove all health.
+4. Add a small screen shake timer and tune its strength.
+5. Add a health display and predict how it changes after each hit.
+
+Creative challenge: choose one event—landing, collecting an item, defeating an enemy, or reaching a checkpoint—and give it a distinct visual response using a timer, colour, movement, or animation.
 
 #### Week 20 — Platformer vertical slice
 
@@ -311,11 +375,11 @@ Concepts: two-dimensional arrays, coordinates, classes, piece data, and mouse se
 
 Pyxel Edit: simple chess piece sprites.
 
-#### Week 22 — Legal movement
+#### Week 22 — Legal movement, captures, and turns
 
-Game result: pawns, rooks, bishops, knights, and queens move legally.
+Game result: pawns, rooks, bishops, knights, and queens move legally, capture pieces, and take turns.
 
-Concepts: methods, conditions, rules, blocked paths, and turn management.
+Concepts: methods, conditions, rules, blocked paths, captures, and turn management.
 
 ```ruby
 class Knight
@@ -325,21 +389,66 @@ class Knight
 end
 ```
 
-#### Week 23 — Kings and special rules
+#### Week 23 — King safety, check, and checkmate
 
-Game result: captures, check, checkmate, castling, promotion, and en passant work.
+Game result: the game prevents illegal moves that leave a king in danger and detects check and checkmate.
 
-Concepts: rule validation, edge cases, state checking, and test positions.
+Concepts: rule validation, hypothetical board positions, edge cases, state checking, and test positions.
 
-#### Week 24 — Finished local chess
+#### Week 24 — Special rules and finished local chess
 
-Game result: two people can play a complete local chess game.
+Game result: castling, promotion, en passant, move history, undo, save/load, and release work in a complete local chess game.
 
-Concepts: move history, undo, save/load, testable game rules, GitHub Actions, README, and release.
+Concepts: move history, special rules, testable game rules, GitHub Actions, README, and release.
 
 The first chess version has no computer opponent and no online server.
 
+## Templates become smaller over time
+
+Early lessons provide most of the program structure. Middle lessons provide a playable structure and a requirement, while Nathan increasingly supplies the examples and implementation. Late lessons provide a game idea or mechanic, and Nathan identifies the state, writes the rules, creates examples, designs the code, and tests it.
+
+```text
+EARLY COURSE
+
+rule
+example
+template
+   ↓
+student implements
+
+
+MIDDLE COURSE
+
+requirement
+template
+   ↓
+student derives examples
+student implements
+
+
+LATE COURSE
+
+requirement
+   ↓
+student identifies state
+student writes rules
+student creates examples
+student designs code
+student tests it
+
+
+AFTER WEEK 24
+
+idea
+   ↓
+student designs the program
+```
+
+The goal is for the design loop to become natural, so that templates eventually provide useful structure without telling Nathan what the solution is.
+
 ## Testing approach
+
+Examples and predictions written while designing a mechanic should become automated tests when practical. A prediction is a claim about what the game should do; an automated test checks that claim repeatedly.
 
 GitHub Actions should test rules and data, not visual appearance.
 
@@ -356,9 +465,11 @@ Examples:
 
 ## After Week 24
 
+The first assessment is explicit: rebuild one earlier small game from a blank DragonRuby project without looking at the original implementation. Ruby and DragonRuby documentation may be consulted.
+
 The next project is independent development:
 
-1. Rebuild a small game from a blank template.
+1. Rebuild a small game from a blank DragonRuby project without looking at its original implementation.
 2. Design an original game.
 3. Make a four-to-eight-week vertical slice.
 4. Add original Pyxel Edit art and animation.
