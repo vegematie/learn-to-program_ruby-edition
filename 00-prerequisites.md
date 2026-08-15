@@ -10,7 +10,7 @@ Get your Windows game workspace ready. You will install the tools, load the less
 - A GitHub account.
 - SPWN, the course's child-friendly Git wrapper.
 - Sublime Text.
-- DragonRuby Game Toolkit.
+- [DragonRuby Game Toolkit](https://dragonruby.org).
 - Ruby, for small Ruby experiments later.
 - Pyxel Editor, optional for pixel art later.
 
@@ -20,7 +20,7 @@ The student does not need to learn what an engine, a binary, or a Ruby gem is ye
 
 1. Open this repository on GitHub.
 2. Click **Fork**. Your fork is your copy of the course.
-3. Clone this repository and make the `spwn` command available.
+3. Clone this repository, then install SPWN with `gem install spawnpoint`.
 4. Select the fork and choose a simple folder, such as `Documents\dragonruby-curriculum`.
 5. Download the Windows DragonRuby zip.
 6. Right-click the zip, choose **Extract All**, and keep the folder named `dragonruby-windows-amd64` intact.

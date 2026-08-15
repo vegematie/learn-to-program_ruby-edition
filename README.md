@@ -1,4 +1,4 @@
-# Make Games with DragonRuby
+# Make Games with [DragonRuby](https://dragonruby.org)
 
 A game-first programming course for Nathan who is new to Ruby.
 
@@ -7,7 +7,7 @@ Learns programming by making games and Ruby concepts are introduced only when a 
 ## Course rules
 
 - No coding agent, Copilot, AI autocomplete, or AI-generated code.
-- DragonRuby is the game engine.
+- [DragonRuby](https://dragonruby.org) is the game engine.
 - Sublime Text is the student's editor.
 - Pyxel Edit is used for sprites, tiles, and animation.
 - SPWN provides child-friendly save-points and sharing.
@@ -80,7 +80,7 @@ Creative challenges are less-scaffolded transfer exercises. They ask Nathan to a
 
 ## SPWN lesson workflow
 
-SPWN lives in `/Users/marcus.kim/repositories/individual/spawnpoint`. Install or expose its `bin/spwn` command once. After that, the student follows the same loop every week:
+SPWN is distributed as the `spawnpoint` Ruby gem. Install it once with `gem install spawnpoint`, which puts the `spwn` command on the PATH. After that, the student follows the same loop every week:
 
 ```text
 +-----------------------+

@@ -291,14 +291,16 @@ Do not worry about branches or commits yet. You only need the course folder for 
 
 SPWN is a separate tool. It is not inside the course repo. You need it before the next step.
 
-An adult should have already prepared SPWN for you as an installable program. If SPWN is not ready yet, stop here and ask the adult to finish the setup note in `SETUP.md`.
+SPWN is a small Ruby program called a gem. Ruby is already on your computer, so you can install SPWN yourself:
 
-When SPWN is ready, you should have already done one of these:
+1. Open **PowerShell**.
+2. Type:
+   ```
+   gem install spawnpoint
+   ```
+3. Wait for the install to finish.
 
-- installed SPWN so that typing `spwn` in PowerShell works, or
-- been told exactly where SPWN is on your computer.
-
-This step only checks that SPWN is ready. Do not try to build SPWN yourself.
+If the install does not work, stop here and ask the adult to look at the setup note in `SETUP.md`.
 
 ### Check that SPWN is ready
 

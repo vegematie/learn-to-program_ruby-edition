@@ -30,13 +30,15 @@ Both computers run the same committed `app/main.rb` and assets with their own na
 
 ## SPWN
 
-SPWN is the course's child-friendly Git wrapper. Its source repository is:
+SPWN is the course's child-friendly Git wrapper. It is distributed as the `spawnpoint` Ruby gem (source: https://github.com/bebekim/spawnpoint).
+
+Install it once on each computer:
 
 ```text
-/Users/marcus.kim/repositories/individual/spawnpoint
+gem install spawnpoint
 ```
 
-The student needs the `spwn` command available on Windows. The teacher can run the source directly on Mac with `ruby bin/spwn`, or expose `bin/spwn` on the PATH.
+This puts the `spwn` command on the PATH on both Windows and Mac.
 
 Useful commands:
 
