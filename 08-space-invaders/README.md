@@ -17,7 +17,7 @@ Make a formation of enemies move, fire bullets, and become destroyable.
 Run:
 
 ```text
-spwn sync 08-space-invaders/starter --into mygame
+spwn sync --target ../dragonruby/mygame --source 08-space-invaders/starter
 ```
 
 The starter has a player, enemy formation, and bullets. Enemies move, but bullets do not destroy them yet.

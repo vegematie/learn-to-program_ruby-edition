@@ -44,7 +44,7 @@ Useful commands:
 
 - `spwn look` — see the current project state;
 - `spwn compare` — see code changes;
-- `spwn sync <lesson>/starter --into <game>` — load a lesson and its starter assets into the local game;
+- `spwn sync --target <game> --source <lesson>/starter` — load a lesson and its starter assets into the local game;
 - `spwn save -m "message"` — commit the current work;
 - `spwn upload` — push the commit to the remote;
 - `spwn download` — pull shared work; and
@@ -157,7 +157,7 @@ The student keeps improving one `mygame` through the prepared lessons:
 Before a new lesson, sync that lesson's starter into the local game:
 
 ```text
-spwn sync 03-movement-and-walls/starter --into mygame
+spwn sync --target ../dragonruby/mygame --source 03-movement-and-walls/starter
 ```
 
 Then launch DragonRuby, edit the marked code, and save the working result. Do not replace the cumulative project with a blank game.

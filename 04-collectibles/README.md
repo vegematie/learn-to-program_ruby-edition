@@ -22,7 +22,7 @@ Today’s Ruby ideas are arrays, loops, collision, score, and removing objects.
 Make sure Week 3 is saved, then run:
 
 ```text
-spwn sync 04-collectibles/starter --into mygame
+spwn sync --target ../dragonruby/mygame --source 04-collectibles/starter
 ```
 
 Launch your local DragonRuby and open `mygame/app/main.rb` in Sublime Text.

@@ -1,13 +1,17 @@
 module Main
   def tick(args)
-    args.state.dragon_x ||= 540
+    args.state.dragon_x ||= 60
     args.state.dragon_y ||= 260
     args.state.frame_count ||= 0
     args.state.frame_count += 1
 
-    speed = 5
-    next_x = args.state.dragon_x
+    speed = 2
+
+    # The dragon walks forward on its own.
+    next_x = args.state.dragon_x + speed
     next_y = args.state.dragon_y
+
+    # Steer with the arrow keys.
     next_x -= speed if args.inputs.keyboard.left
     next_x += speed if args.inputs.keyboard.right
     next_y -= speed if args.inputs.keyboard.down
@@ -40,7 +44,7 @@ module Main
     args.outputs.labels << {
       x: 20,
       y: 700,
-      text: "Arrow keys move the dragon | frames: #{args.state.frame_count}",
+      text: "The dragon walks alone. Steer it! | seconds: #{args.state.frame_count / 60.0}",
       size_px: 22
     }
   end

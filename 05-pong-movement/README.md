@@ -16,7 +16,7 @@ Make a Pong ball move and bounce around the playfield.
 Run:
 
 ```text
-spwn sync 05-pong-movement/starter --into mygame
+spwn sync --target ../dragonruby/mygame --source 05-pong-movement/starter
 ```
 
 Launch your local DragonRuby. The starter shows paddles and a ball that moves, but the ball leaves the screen.

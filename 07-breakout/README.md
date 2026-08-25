@@ -16,7 +16,7 @@ Make a ball destroy a wall of bricks.
 Run:
 
 ```text
-spwn sync 07-breakout/starter --into mygame
+spwn sync --target ../dragonruby/mygame --source 07-breakout/starter
 ```
 
 The starter has a paddle, ball, and brick collection. The ball bounces, but bricks do not disappear yet.

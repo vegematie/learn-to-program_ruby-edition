@@ -59,7 +59,7 @@ The README is written for Nathan:
 - run the one-time Git config if needed;
 - clone the course repo into `game-dev`, using PowerShell/Git or GitHub Desktop;
 - install SPWN with `gem install spawnpoint`;
-- use `spwn sync 01-setup/starter --into ../dragonruby/mygame` to copy the lesson into `mygame`;
+- use `spwn sync --target ../dragonruby/mygame --source 01-setup/starter` to copy the lesson into `mygame`;
 - prove the edit → run → save loop with `spwn save -m "week 01: first project"`.
 
 Use that order when working with him.

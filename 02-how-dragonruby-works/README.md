@@ -17,7 +17,7 @@ Make the player move with the keyboard.
 Make sure Week 1 is saved, then run:
 
 ```text
-spwn sync 02-how-dragonruby-works/starter --into mygame
+spwn sync --target ../dragonruby/mygame --source 02-how-dragonruby-works/starter
 ```
 
 Launch your local DragonRuby and open `mygame/app/main.rb`.
@@ -27,6 +27,29 @@ DragonRuby repeatedly calls `tick`. The game reads the arrow keys, changes the r
 ```text
 arrow key → change position → draw player
 ```
+
+## Ruby syntax decoder
+
+New symbols show up in this week's code. Here is what each one means. Come back to this
+table any time a line looks strange.
+
+- **`#` — a comment.** The computer ignores everything after `#`. It is a note for humans.
+- **`=` — "hold this".** `dragon_x = 540` puts 540 into a jar labeled `dragon_x`.
+- **`||=` — "hold this, but only if the jar is empty".** Used for the starting position,
+  so it is written once, not every frame.
+- **`+=` and `-=` — "change by".** `x += speed` is short for `x = x + speed`.
+- **`.` — "ask for".** `args.inputs.keyboard.left` asks: args, give me your inputs;
+  inputs, give me the keyboard; keyboard, is left held?
+- **`<<` — "add to the list".** `args.outputs.sprites << { ... }` adds one more thing
+  to draw.
+- **`{ key: value }` — a description card.** Each line inside is "label: answer", like
+  `x: 640`. The colon hugs the word in front of it.
+- **`def name(things) ... end` — a recipe.** Nothing inside runs until someone calls
+  the name. The things in parentheses are what you must hand it.
+- **`if` at the end of a line — "only when".** `x -= speed if keyboard.left` reads like
+  English: subtract speed *if* left is held.
+- **`"#{...}"` — fill in the blank inside words.** The code inside `#{ }` runs and its
+  result is pasted into the text.
 
 ## Exercise 2.1 - Move the player
 

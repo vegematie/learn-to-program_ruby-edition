@@ -158,10 +158,24 @@ Useful commands:
 ```text
 spwn look                              # see the current project state
 spwn compare                           # see the code changes
-spwn sync 03-movement-and-walls/starter --into mygame
+spwn sync --target ../dragonruby/mygame --source 03-movement-and-walls/starter
 spwn save -m "week 03: keep the player on screen"
 spwn upload                            # share the checkpoint
 ```
+
+Load any week — run from the course repo folder; no need to delete anything first,
+SPWN asks before replacing files:
+
+| Week | Command |
+| ---- | ------- |
+| 1 | `spwn sync --target ../dragonruby/mygame --source 01-setup/starter` |
+| 2 | `spwn sync --target ../dragonruby/mygame --source 02-how-dragonruby-works/starter` |
+| 3 | `spwn sync --target ../dragonruby/mygame --source 03-movement-and-walls/starter` |
+| 4 | `spwn sync --target ../dragonruby/mygame --source 04-collectibles/starter` |
+| 5 | `spwn sync --target ../dragonruby/mygame --source 05-pong-movement/starter` |
+| 6 | `spwn sync --target ../dragonruby/mygame --source 06-pong-game/starter` |
+| 7 | `spwn sync --target ../dragonruby/mygame --source 07-breakout/starter` |
+| 8 | `spwn sync --target ../dragonruby/mygame --source 08-space-invaders/starter` |
 
 ## Big Table of Contents
 

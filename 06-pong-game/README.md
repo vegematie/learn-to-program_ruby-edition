@@ -16,7 +16,7 @@ Make Pong playable for two people, with paddles, score, lives, round resets, and
 Run:
 
 ```text
-spwn sync 06-pong-game/starter --into mygame
+spwn sync --target ../dragonruby/mygame --source 06-pong-game/starter
 ```
 
 The starter is a playable Pong table. Add the round rules, then play against another person.

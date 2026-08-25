@@ -329,7 +329,7 @@ Do this in **PowerShell**.
    ```
 3. Run SPWN:
    ```
-   spwn sync 01-setup/starter --into ../dragonruby/mygame
+   spwn sync --target ../dragonruby/mygame --source 01-setup/starter
    ```
 
 The first time a lesson copies a file that already exists in your game folder, SPWN asks before replacing it.
@@ -353,6 +353,79 @@ Your SPWN save command is:
 ```
 spwn save -m "week 01: first project"
 ```
+
+## Read the code
+
+Before you change anything, read `mygame/app/main.rb` once, top to bottom. Here is what each part does.
+
+```ruby
+module Main
+  def tick(args)
+```
+
+- `module Main` is a named box that holds the game code. DragonRuby looks for a box called `Main`.
+- `def tick(args)` is the game's heartbeat. DragonRuby runs `tick` about 60 times every second. Each run draws one frame. `args` is a backpack DragonRuby hands in, full of useful things.
+
+```ruby
+message = "Hello, Dragon!"
+dragon_x = 540
+dragon_y = 260
+```
+
+Three variables. A variable is a name that holds a value. `message` holds words — words inside quotes are called a **string**. `dragon_x` and `dragon_y` hold numbers: where the dragon sits. `x` is left-right, `y` is up-down, counted in pixels from the bottom-left corner of the screen.
+
+```ruby
+args.outputs.labels << {
+  x: 640,
+  y: 560,
+  text: message,
+  size_px: 42,
+  anchor_x: 0.5
+}
+```
+
+- `args.outputs.labels` is the list of text to draw this frame. `<<` means "add this to the list".
+- The `{ ... }` describes one piece of text: draw `text` (whatever `message` holds) at 640, 560, with letters 42 pixels tall. `anchor_x: 0.5` centers it.
+
+```ruby
+args.outputs.sprites << {
+  x: dragon_x,
+  y: dragon_y,
+  w: 200,
+  h: 200,
+  path: "dragonruby.png"
+}
+```
+
+Same pattern, but `sprites` is the list of pictures. This one draws the image `dragonruby.png` at the position in `dragon_x` and `dragon_y`, at 200×200 pixels. `w` is width, `h` is height.
+
+The two `end` lines close the boxes: the first finishes `tick`, the second finishes `Main`.
+
+**The big idea:** the file does not draw anything directly. Every frame, `tick` fills two lists — these words, these pictures — and DragonRuby draws whatever is in the lists. Change the values, and the next heartbeat draws something different. That is why the game changes the moment you save.
+
+Two questions to check you got it:
+
+1. How many times per second does `tick` run?
+2. How would you draw a second dragon? (Add another `args.outputs.sprites << { ... }` block with different numbers.)
+
+## Ruby syntax decoder
+
+Strange symbols in the code? This table says what each one means. Come back to it any
+time a line looks confusing.
+
+- **`#` — a comment.** The computer ignores everything after `#`. It is a note for humans.
+- **`=` — "hold this".** `message = "Hello"` puts the words into a jar labeled `message`.
+  It is not math equals — it means "put this in a labeled jar."
+- **`"..."` — words.** Quotes mean "these are literal words, not code." This is called
+  a **string**.
+- **`.` — "ask for".** `args.outputs` asks args to hand over its outputs. Dots can chain:
+  ask, then ask again.
+- **`<<` — "add to the list".** `args.outputs.sprites << { ... }` adds one more thing
+  to draw.
+- **`{ key: value }` — a description card.** Each line inside is "label: answer", like
+  `x: 640`. The colon hugs the word in front of it.
+- **`def ... end` — a recipe.** `def tick(args)` starts it and `end` finishes it. It only
+  runs when DragonRuby calls it — 60 times a second.
 
 ## Exercise 1.1 - Change a value
 

@@ -35,10 +35,12 @@ SPWN keeps snapshots of your game. If you break something, you can return to an 
 From the course repository, load the first playable lesson into your local DragonRuby game folder:
 
 ```text
-spwn sync 01-setup/starter --into mygame
+spwn sync --target "..\DragonRuby\dragonruby-windows-amd64\mygame" --source 01-setup/starter
 ```
 
-Then open `mygame/app/main.rb` in Sublime Text and double-click your local DragonRuby executable. The lesson starter and any committed assets are now in your copy of the game.
+The target is the `mygame` folder **inside your DragonRuby installation**, not the `mygame` folder in this repository — DragonRuby only runs games from its own folder, so the lesson files must land there. The command above assumes the layout from step 7 (DragonRuby in `Documents\DragonRuby`, next to the course folder); adjust the path if you put it elsewhere.
+
+Then open that folder's `app/main.rb` in Sublime Text and double-click your local DragonRuby executable. The lesson starter and any committed assets are now in your copy of the game.
 
 ## Checkpoint
 
